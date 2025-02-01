@@ -6,15 +6,12 @@ const WindSpeed = document.getElementById("wind-speed");
 const searchButton = document.getElementById("search-btn");
 
 searchButton.addEventListener("click", () => {
-  //   const city = CityInput.value;
-  //   console.log(`searching weather for ${city}`);
-  //   if (!city) {
-  //     alert("Please enter city Name");
-  //     return;
-  //   }
-
-  async function fetchCityWeather() {
-    const city = CityInput.value;
+  const city = CityInput.value;
+  if (!city) {
+    alert("Please enter city Name");
+    return;
+  }
+  async function fetchCityWeather(city) {
     const ApiKey = "073f90ec278b65d3d0392cd7ea21c73d";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}`;
 
@@ -28,22 +25,22 @@ searchButton.addEventListener("click", () => {
 
       const data = await response.json();
       const CityName = data.name;
-      const Temperature = data.main.temp;
+      const Temperature = data.main.temp - 273.15;
       const Humidity = data.main.humidity;
       const WindSpeed = data.wind.speed;
-      const Weather = data.weather.main;
-      const description = data.weather.description;
+      const Weather = data.weather.description;
+      const description = data.weather.main;
       console.log(Temperature);
 
-      document.getElementById("temp").innerText = `${Temperature}°C`;
-      document.getElementById("humidity").innerText = `${Humidity}%`;
-      document.getElementById("wind-speed").innerText = `${WindSpeed}km/h`;
-      document.getElementById("wind-speed").innerText = `${WindSpeed}km/h`;
+      document.getElementById("temp").innerText = `${Temperature}`;
+      document.getElementById("humidity").innerText = `${Humidity}`;
+      document.getElementById("wind-speed").innerText = `${WindSpeed}`;
+      document.getElementById("description").innerText = `${description}`;
+      document.getElementById("city").innerText = `${CityName}`;
     } catch (error) {
       console.error("Error fetching weather data:", error);
       alert("Error fetching weather data. Please Try again");
     }
-    console.log("I'm last to execute");
   }
-  fetchCityWeather();
+  fetchCityWeather(city);
 });
