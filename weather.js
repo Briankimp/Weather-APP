@@ -6,10 +6,15 @@ const WindSpeed = document.getElementById("wind-speed");
 const searchButton = document.getElementById("search-btn");
 
 searchButton.addEventListener("click", () => {
-  const city = CityInput.value;
-  console.log(`searching weather for ${city}`);
+  //   const city = CityInput.value;
+  //   console.log(`searching weather for ${city}`);
+  //   if (!city) {
+  //     alert("Please enter city Name");
+  //     return;
+  //   }
 
-  async function fetchCityWeather(city) {
+  async function fetchCityWeather() {
+    const city = CityInput.value;
     const ApiKey = "073f90ec278b65d3d0392cd7ea21c73d";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}`;
 
