@@ -36,7 +36,7 @@ searchButton.addEventListener("click", () => {
       document.getElementById("humidity").innerText = `${Humidity}`;
       document.getElementById("wind-speed").innerText = `${WindSpeed}`;
       document.getElementById("description").innerText = `${description}`;
-      document.getElementById("city").innerText = `${CityName}`;
+      document.getElementById("city").innerText = `${CityName}` ;
     } catch (error) {
       console.error("Error fetching weather data:", error);
       alert("Error fetching weather data. Please Try again");
