@@ -5,6 +5,12 @@ const Humidity = document.getElementById("humidity");
 const WindSpeed = document.getElementById("wind-speed");
 const searchButton = document.getElementById("search-btn");
 
+if (navigator.geolocation) {
+  console.log("Geolocation API AVailable");
+} else {
+  console.log("Geolocation unavailable");
+}
+
 searchButton.addEventListener("click", () => {
   const city = CityInput.value;
   if (!city) {
@@ -14,7 +20,6 @@ searchButton.addEventListener("click", () => {
   async function fetchCityWeather(city) {
     const ApiKey = "073f90ec278b65d3d0392cd7ea21c73d";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}`;
-
     try {
       const response = await fetch(apiUrl);
       console.log(response);
@@ -36,7 +41,7 @@ searchButton.addEventListener("click", () => {
       document.getElementById("humidity").innerText = `${Humidity}`;
       document.getElementById("wind-speed").innerText = `${WindSpeed}`;
       document.getElementById("description").innerText = `${description}`;
-      document.getElementById("city").innerText = `${CityName}` ;
+      document.getElementById("city").innerText = `${CityName}`;
     } catch (error) {
       console.error("Error fetching weather data:", error);
       alert("Error fetching weather data. Please Try again");
@@ -44,3 +49,7 @@ searchButton.addEventListener("click", () => {
   }
   fetchCityWeather(city);
 });
+
+function fetchLocation() {
+  console.log("location");
+}
